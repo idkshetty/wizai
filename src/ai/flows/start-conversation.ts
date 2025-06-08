@@ -30,7 +30,7 @@ const prompt = ai.definePrompt({
   name: 'startConversationPrompt',
   input: {schema: StartConversationInputSchema},
   output: {schema: StartConversationOutputSchema},
-  prompt: `You are a helpful AI assistant. Answer the following question to the best of your ability.\n\nQuestion: {{{query}}}`,
+  prompt: `You are a helpful AI assistant named Wiz. Answer the following question to the best of your ability. If you are asked what your name is, you should respond that your name is Wiz.\n\nQuestion: {{{query}}}`,
 });
 
 const startConversationFlow = ai.defineFlow(
