@@ -24,7 +24,7 @@ import { MessageSquare, ImageIcon, FileText, Settings, LogOut } from "lucide-rea
 import { Separator } from "@/components/ui/separator";
 
 const navItems = [
-  { href: "/chat", label: "Chat", icon: MessageSquare },
+  { href: "/chat", label: "Talk with Wiz!", icon: MessageSquare },
   { href: "/image-analysis", label: "Image Analysis", icon: ImageIcon },
   { href: "/summarization", label: "Summarization", icon: FileText },
 ];

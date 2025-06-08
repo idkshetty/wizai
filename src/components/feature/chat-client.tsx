@@ -113,7 +113,7 @@ export default function ChatClient() {
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle className="font-headline text-2xl flex items-center">
           <MessageSquare className="mr-2 h-6 w-6 text-primary" />
-          Conversational AI
+          Talk with Wiz!
         </CardTitle>
         {messages.length > 0 && (
           <Button variant="ghost" size="icon" onClick={handleClearChat} aria-label="Clear chat history">
@@ -127,8 +127,8 @@ export default function ChatClient() {
             {messages.length === 0 && !isLoading && (
               <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground pt-10">
                 <MessageSquare className="w-16 h-16 mb-4" />
-                <p className="text-lg font-semibold text-foreground">Start a conversation!</p>
-                <p className="text-sm">Ask me anything, or type your query below.</p>
+                <p className="text-lg font-semibold text-foreground">Start a conversation with Wiz!</p>
+                <p className="text-sm">Ask Wiz anything, or type your query below.</p>
               </div>
             )}
             {messages.map((message) => (
@@ -188,7 +188,7 @@ export default function ChatClient() {
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Ask me anything..."
+            placeholder="Ask Wiz anything..."
             className="flex-grow resize-none rounded-lg border p-3 focus-visible:ring-primary"
             rows={1}
             onKeyDown={(e) => {
