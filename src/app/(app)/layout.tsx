@@ -40,17 +40,17 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href} passHref legacyBehavior>
+                <Link href={item.href}>
                   <SidebarMenuButton
                     asChild
                     isActive={pathname.startsWith(item.href)}
                     tooltip={{ children: item.label, side: "right", align: "center" }}
                     className="justify-start"
                   >
-                    <a>
+                    <>
                       <item.icon />
                       <span>{item.label}</span>
-                    </a>
+                    </>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
