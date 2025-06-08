@@ -47,10 +47,10 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
                     tooltip={{ children: item.label, side: "right", align: "center" }}
                     className="justify-start"
                   >
-                    <>
+                    <span>
                       <item.icon />
                       <span>{item.label}</span>
-                    </>
+                    </span>
                   </SidebarMenuButton>
                 </Link>
               </SidebarMenuItem>
