@@ -11,13 +11,13 @@ export function Logo({ className }: { className?: string }) {
         "font-headline font-bold text-2xl text-sidebar-primary",
         isCollapsed && "hidden"
       )}>
-        GeminiLite
+        Wiz
       </span>
       <span className={cn(
         "font-headline font-bold text-2xl text-sidebar-primary",
         !isCollapsed && "hidden"
       )}>
-        GL
+        W
       </span>
     </div>
   );

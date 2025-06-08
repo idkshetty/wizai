@@ -3,7 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
-  title: 'GeminiLite',
+  title: 'Wiz',
   description: 'Conversational AI, Image Analysis, and Summarization Tool',
 };
 

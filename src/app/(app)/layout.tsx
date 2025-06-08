@@ -15,11 +15,11 @@ import {
   SidebarMenuButton,
   SidebarInset,
   SidebarTrigger,
-  useSidebar, // Added import
+  useSidebar,
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { SheetTitle } from "@/components/ui/sheet";
-import { Logo } from "@/components/icons/logo"; // Added import
+import { Logo } from "@/components/icons/logo";
 import { MessageSquare, ImageIcon, FileText, Settings, LogOut } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -34,11 +34,11 @@ const AppTitleRenderer = () => {
   const { isMobile } = useSidebar();
 
   if (isMobile) {
-    // On mobile, always show "GeminiLite" inside SheetTitle for accessibility
+    // On mobile, always show "Wiz" inside SheetTitle for accessibility
     return (
       <SheetTitle>
         <span className="font-headline font-bold text-2xl text-sidebar-primary">
-          GeminiLite
+          Wiz
         </span>
       </SheetTitle>
     );
@@ -95,7 +95,7 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
         <header className="sticky top-0 z-10 flex h-14 items-center gap-4 border-b bg-background px-4 sm:h-16 sm:px-6">
           <SidebarTrigger className="md:hidden" />
           <h1 className="text-lg font-semibold md:text-xl font-headline">
-            {navItems.find(item => pathname.startsWith(item.href))?.label || "GeminiLite"}
+            {navItems.find(item => pathname.startsWith(item.href))?.label || "Wiz"}
           </h1>
         </header>
         <main className="flex-1 p-4 sm:p-6 overflow-auto">
