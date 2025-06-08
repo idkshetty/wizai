@@ -2,11 +2,12 @@
 "use client";
 
 import { useState, useRef, useEffect, type FormEvent } from "react";
+import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Loader2, SendHorizonal, User, Sparkles, MessageSquare, Trash2 } from "lucide-react";
 import { startConversation, type StartConversationInput, type StartConversationOutput } from "@/ai/flows/start-conversation";
 import { useToast } from "@/hooks/use-toast";
@@ -17,7 +18,7 @@ interface Message {
   content: string;
 }
 
-const LOCAL_STORAGE_KEY = "chatMessages";
+const LOCAL_STORAGE_KEY = "chatMessagesWiz";
 
 export default function ChatClient() {
   const [messages, setMessages] = useState<Message[]>([]);
@@ -26,7 +27,6 @@ export default function ChatClient() {
   const { toast } = useToast();
   const scrollAreaRef = useRef<HTMLDivElement>(null);
 
-  // Load messages from localStorage on initial render
   useEffect(() => {
     try {
       const savedMessages = localStorage.getItem(LOCAL_STORAGE_KEY);
@@ -38,11 +38,10 @@ export default function ChatClient() {
       }
     } catch (error) {
       console.error("Failed to load messages from localStorage", error);
-      localStorage.removeItem(LOCAL_STORAGE_KEY); // Clear corrupted data
+      localStorage.removeItem(LOCAL_STORAGE_KEY);
     }
   }, []);
 
-  // Save messages to localStorage whenever they change
   useEffect(() => {
     try {
       localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(messages));
@@ -77,7 +76,7 @@ export default function ChatClient() {
       console.error("Error starting conversation:", error);
       toast({
         title: "Error",
-        description: "Failed to get response from AI. Please try again.",
+        description: "Failed to get response from Wiz. Please try again.",
         variant: "destructive",
       });
        const errorMessage: Message = {
@@ -92,10 +91,10 @@ export default function ChatClient() {
   };
 
   const handleClearChat = () => {
-    setMessages([]); // This will trigger the save useEffect, saving an empty array
+    setMessages([]);
     toast({
       title: "Chat Cleared",
-      description: "Your conversation history has been cleared.",
+      description: "Your conversation history with Wiz has been cleared.",
     });
   };
 
@@ -146,13 +145,25 @@ export default function ChatClient() {
                   </Avatar>
                 )}
                 <div
-                  className={`max-w-[70%] rounded-xl px-4 py-3 shadow-md ${
+                  className={`max-w-[70%] rounded-xl px-4 py-3 shadow-md text-sm ${
                     message.role === "user"
                       ? "bg-primary text-primary-foreground"
-                      : "bg-card border"
+                      : "bg-card border text-card-foreground"
                   }`}
                 >
-                  <p className="text-sm whitespace-pre-wrap">{message.content}</p>
+                  {message.role === 'assistant' ? (
+                    <ReactMarkdown
+                      className="prose prose-sm dark:prose-invert max-w-none"
+                      components={{
+                        // Ensure links open in a new tab
+                        a: ({node, ...props}) => <a {...props} target="_blank" rel="noopener noreferrer" />,
+                      }}
+                    >
+                      {message.content}
+                    </ReactMarkdown>
+                  ) : (
+                    <p className="whitespace-pre-wrap break-words">{message.content}</p>
+                  )}
                 </div>
                 {message.role === "user" && (
                   <Avatar className="h-8 w-8">
@@ -163,7 +174,7 @@ export default function ChatClient() {
                 )}
               </div>
             ))}
-             {isLoading && messages.length > 0 && ( // Only show loading dots if there are messages
+             {isLoading && messages.length > 0 && (
               <div className="flex items-start gap-3">
                 <Avatar className="h-8 w-8">
                    <AvatarFallback className="bg-primary text-primary-foreground">
@@ -175,7 +186,7 @@ export default function ChatClient() {
                 </div>
               </div>
             )}
-             {isLoading && messages.length === 0 && ( // Centered loader for initial loading
+             {isLoading && messages.length === 0 && (
                 <div className="flex justify-center items-center h-full pt-10">
                     <Loader2 className="h-8 w-8 animate-spin text-primary" />
                 </div>
