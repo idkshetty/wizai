@@ -1,3 +1,4 @@
+
 "use client";
 
 import * as React from "react";
@@ -14,9 +15,11 @@ import {
   SidebarMenuButton,
   SidebarInset,
   SidebarTrigger,
+  useSidebar, // Added import
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/icons/logo";
+import { SheetTitle } from "@/components/ui/sheet";
+import { Logo } from "@/components/icons/logo"; // Added import
 import { MessageSquare, ImageIcon, FileText, Settings, LogOut } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 
@@ -26,6 +29,24 @@ const navItems = [
   { href: "/summarization", label: "Summarization", icon: FileText },
 ];
 
+// Helper component to render the correct title based on context
+const AppTitleRenderer = () => {
+  const { isMobile } = useSidebar();
+
+  if (isMobile) {
+    // On mobile, always show "GeminiLite" inside SheetTitle for accessibility
+    return (
+      <SheetTitle>
+        <span className="font-headline font-bold text-2xl text-sidebar-primary">
+          GeminiLite
+        </span>
+      </SheetTitle>
+    );
+  }
+  // On desktop, use the Logo component which handles collapsed/expanded states
+  return <Logo />;
+};
+
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
 
@@ -33,26 +54,26 @@ export default function AppLayout({ children }: { children: React.ReactNode }) {
     <SidebarProvider defaultOpen={true} open={true}>
       <Sidebar variant="sidebar" collapsible="icon" side="left" className="border-r">
         <SidebarHeader className="p-4 flex items-center justify-between">
-          <Logo className="text-sidebar-primary" />
+          <AppTitleRenderer />
         </SidebarHeader>
         <Separator className="bg-sidebar-border" />
         <SidebarContent className="flex-grow p-2">
           <SidebarMenu>
             {navItems.map((item) => (
               <SidebarMenuItem key={item.href}>
-                <Link href={item.href}>
-                  <SidebarMenuButton
-                    asChild
-                    isActive={pathname.startsWith(item.href)}
-                    tooltip={{ children: item.label, side: "right", align: "center" }}
-                    className="justify-start"
-                  >
-                    <span>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname.startsWith(item.href)}
+                  tooltip={{ children: item.label, side: "right", align: "center" }}
+                  className="justify-start"
+                >
+                  <Link href={item.href}>
+                    <span className="flex items-center gap-2">
                       <item.icon />
                       <span>{item.label}</span>
                     </span>
-                  </SidebarMenuButton>
-                </Link>
+                  </Link>
+                </SidebarMenuButton>
               </SidebarMenuItem>
             ))}
           </SidebarMenu>
