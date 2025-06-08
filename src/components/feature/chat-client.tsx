@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
-import { Loader2, SendHorizonal, User, Sparkles, MessageSquare, Trash2 } from "lucide-react";
+import { Loader2, SendHorizonal, User, Sparkles, MessageSquare, Trash2, Download } from "lucide-react";
 import { startConversation, type StartConversationInput, type StartConversationOutput } from "@/ai/flows/start-conversation";
 import { useToast } from "@/hooks/use-toast";
 
@@ -98,6 +98,37 @@ export default function ChatClient() {
     });
   };
 
+  const handleDownloadChat = () => {
+    if (messages.length === 0) {
+      toast({
+        title: "No Messages",
+        description: "There are no messages to download.",
+        variant: "default",
+      });
+      return;
+    }
+
+    const formattedMessages = messages
+      .map((msg) => `${msg.role === "user" ? "User" : "Wiz"}: ${msg.content}`)
+      .join("\n\n");
+
+    const blob = new Blob([formattedMessages], { type: "text/plain;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "wiz-chat-history.txt";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    toast({
+      title: "Chat Downloaded",
+      description: "Your conversation history has been downloaded as wiz-chat-history.txt.",
+    });
+  };
+
+
   useEffect(() => {
     if (scrollAreaRef.current) {
       const scrollElement = scrollAreaRef.current.querySelector('div[data-radix-scroll-area-viewport]');
@@ -115,9 +146,14 @@ export default function ChatClient() {
           Talk with Wiz!
         </CardTitle>
         {messages.length > 0 && (
-          <Button variant="ghost" size="icon" onClick={handleClearChat} aria-label="Clear chat history">
-            <Trash2 className="h-5 w-5" />
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button variant="ghost" size="icon" onClick={handleDownloadChat} aria-label="Download chat history">
+              <Download className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" onClick={handleClearChat} aria-label="Clear chat history">
+              <Trash2 className="h-5 w-5" />
+            </Button>
+          </div>
         )}
       </CardHeader>
       <CardContent className="flex-grow overflow-hidden p-0">
@@ -223,3 +259,4 @@ export default function ChatClient() {
     </Card>
   );
 }
+
