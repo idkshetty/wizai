@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Analysis</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="image-analysis.css">
+</head>
+<body>
+    <div id="page-container">
+        <header class="app-header">
+            <h1>Image Analysis with Wiz</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="chat.html">Chat</a>
+                <a href="text-summarization.html">Text Summarization</a>
+            </nav>
+        </header>
+
+        <div id="image-analysis-app-container" class="app-card">
+            <section id="input-section">
+                <h3>Upload an Image</h3>
+                <div class="input-area">
+                    <label for="image-upload-input" class="file-upload-label">Choose Image</label>
+                    <input type="file" id="image-upload-input" accept="image/*" style="display: none;">
+                    <img id="image-preview" src="#" alt="Image preview" style="max-width: 100%; max-height: 300px; margin-top: 15px; display: none; border-radius: 4px; border: 1px solid #ccc;">
+                </div>
+                <button id="analyze-image-btn" disabled>Analyze Image</button>
+            </section>
+
+            <section id="results-section">
+                <h3>Analysis Results</h3>
+                <div id="loading-indicator" style="display: none; padding: 10px 0;">
+                    <p>Wiz is analyzing the image...</p>
+                    <!-- Simple spinner or text -->
+                </div>
+                <div id="analysis-result-container">
+                    <p id="analysis-result-placeholder">Analysis will appear here.</p>
+                    <div id="analysis-result"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="toast-container"></div> <!-- Re-use toast container from chat app -->
+    <script src="image-analysis.js" defer></script>
+</body>
+</html>

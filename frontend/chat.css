@@ -1,0 +1,353 @@
+/* Styles specific to chat.html */
+
+/* Chat App Container - specific height and flex properties */
+#chat-app-container {
+    height: 85vh; /* Adjusted for better screen fit */
+    max-height: 800px; /* Max height for very tall screens */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* To ensure child border-radius is respected from app-card */
+}
+
+/* Chat Header - specific padding, border */
+#chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px; /* Adjusted padding */
+    border-bottom: 1px solid #e2e8f0; /* slate-200 */
+    background-color: #f8fafc; /* Slightly off-white for header */
+}
+
+#chat-header h2 { /* Changed from h1 in HTML */
+    font-size: 1.1rem; /* text-lg equivalent */
+    font-weight: 600; /* font-semibold */
+}
+
+/* Action Buttons in Chat Header */
+#action-buttons button {
+    background-color: transparent;
+    border: none;
+    color: #475569; /* slate-600, for icon color */
+    padding: 6px;
+    border-radius: 6px;
+    margin-left: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+}
+
+#action-buttons button:hover {
+    background-color: #e2e8f0; /* slate-200 for hover */
+    color: #0f172a; /* slate-900 for icon hover */
+}
+
+#action-buttons button svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+}
+
+/* Message Display Area */
+#message-display-area {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f8f9fa; /* Light background for message area */
+}
+
+.message-container {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end;
+}
+
+.user-message-container {
+    justify-content: flex-end;
+}
+
+.ai-message-container {
+    justify-content: flex-start;
+}
+
+/* Avatar Styles (specific to chat, or could be common if identical elsewhere) */
+.avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.avatar svg {
+    width: 18px;
+    height: 18px;
+    stroke: #475569;
+}
+
+.user-avatar {
+    background-color: #0ea5e9;
+}
+.user-avatar svg {
+    stroke: #ffffff;
+}
+
+.ai-avatar {
+    background-color: #34d399;
+}
+.ai-avatar svg {
+    stroke: #065f46;
+}
+
+
+/* Message Bubble Styling */
+.message-bubble {
+    max-width: 75%;
+    padding: 0; /* Padding is on .message-text */
+    border-radius: 12px;
+    line-height: 1.4;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-message-container .message-bubble {
+    background-color: #0ea5e9;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+}
+
+.ai-message-container .message-bubble {
+    background-color: #e2e8f0;
+    color: #0f172a;
+    border-bottom-left-radius: 4px;
+}
+
+.message-text {
+    font-size: 0.9rem;
+    padding: 10px 14px;
+    width: 100%;
+}
+.message-text p:first-child { margin-top: 0; }
+.message-text p:last-child { margin-bottom: 0; }
+
+
+.message-timestamp {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 4px;
+    padding: 0 10px 6px 14px;
+    align-self: flex-end;
+}
+.user-message-container .message-bubble .message-timestamp {
+     color: #e0f2fe;
+}
+.ai-message-container .message-bubble .message-timestamp {
+   color: #475569;
+   align-self: flex-end;
+}
+
+
+/* Markdown Specific Styles */
+.ai-message-container .message-bubble .message-text pre {
+    background-color: #1e293b;
+    color: #e2e8f0;
+    padding: 12px;
+    border-radius: 6px;
+    overflow-x: auto;
+    margin: 8px 0;
+    font-size: 0.85em;
+}
+
+.ai-message-container .message-bubble .message-text code:not(pre code) {
+    background-color: #cbd5e1;
+    color: #1e293b;
+    padding: 2px 5px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.ai-message-container .message-bubble .message-text ul,
+.ai-message-container .message-bubble .message-text ol {
+    margin: 8px 0 8px 20px;
+    padding-left: 15px;
+}
+.ai-message-container .message-bubble .message-text ul li,
+.ai-message-container .message-bubble .message-text ol li {
+    margin-bottom: 4px;
+}
+
+.ai-message-container .message-bubble .message-text blockquote {
+    border-left: 3px solid #94a3b8;
+    padding-left: 12px;
+    margin: 8px 0 8px 5px;
+    color: #475569;
+    font-style: italic;
+}
+.ai-message-container .message-bubble .message-text a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+.ai-message-container .message-bubble .message-text a:hover {
+    color: #1d4ed8;
+}
+.ai-message-container .message-bubble .message-text hr {
+    border: none;
+    border-top: 1px solid #cbd5e1;
+    margin: 16px 0;
+}
+
+/* Message Input Area */
+#message-input-area {
+    padding: 12px 15px; /* Adjusted padding */
+    border-top: 1px solid #e2e8f0;
+    background-color: #ffffff;
+}
+
+#message-form {
+    display: flex;
+    align-items: flex-end; /* Align button with bottom of textarea if it grows */
+    gap: 8px;
+}
+
+#message-textarea {
+    flex-grow: 1;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    resize: none;
+    min-height: 40px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#message-textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 1px #3b82f6;
+}
+
+#send-message-btn {
+    background-color: #2563eb;
+    color: #ffffff;
+    /* padding: 10px 16px;  Padding is part of width/height now */
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    align-self: flex-end; /* Keep button at bottom */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; /* Prevent button from shrinking */
+}
+
+#send-message-btn:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+#send-message-btn:disabled {
+    background-color: #94a3b8; /* slate-400 */
+    cursor: not-allowed;
+}
+
+
+#send-message-btn svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+/* Loading state for send button */
+#send-message-btn.loading svg {
+    display: none;
+}
+#send-message-btn.loading::after {
+    content: "...";
+    font-size: 1.2rem;
+    color: #ffffff;
+}
+
+/* Responsive Styles for chat */
+@media (max-width: 600px) {
+    /* Specific adjustments for chat app on mobile, if any, beyond common.css */
+    #chat-app-container {
+        /* height: 100vh;
+        max-height: 100vh; */ /* These are now in common.css for .app-card on mobile if needed */
+        /* border-radius: 0;
+        border: none;
+        box-shadow: none; */
+    }
+
+    #chat-header {
+        padding: 10px 12px;
+    }
+
+    #chat-header h2 {
+        font-size: 1rem;
+    }
+
+    #action-buttons button {
+        padding: 5px;
+        width: 30px;
+        height: 30px;
+    }
+    #action-buttons button svg {
+        width: 16px;
+        height: 16px;
+    }
+
+    #message-display-area {
+        padding: 12px;
+    }
+
+    .message-bubble {
+        max-width: 85%;
+    }
+    .message-text {
+        padding: 8px 12px;
+    }
+    .avatar { /* Slightly smaller avatars on mobile */
+        width: 28px;
+        height: 28px;
+    }
+    .avatar svg {
+        width: 16px;
+        height: 16px;
+    }
+
+
+    #message-input-area {
+        padding: 10px 12px;
+    }
+
+    #message-textarea {
+        font-size: 0.875rem;
+        min-height: 38px;
+    }
+
+    #send-message-btn {
+        /* padding: 8px; */
+        width: 38px;
+        height: 38px;
+    }
+    #send-message-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+}

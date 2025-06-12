@@ -1,0 +1,5 @@
+
+> ai-backend@1.0.0 serve
+> node dist/server.js
+
+Server listening at http://localhost:3001 with payload limit 10mb

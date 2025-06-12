@@ -1,0 +1,29 @@
+{
+  "name": "ai-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/server.ts",
+    "build": "node node_modules/typescript/bin/tsc",
+    "serve": "node dist/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@genkit-ai/ai": "^1.12.0",
+    "@genkit-ai/flow": "^0.5.17",
+    "@genkit-ai/googleai": "^1.12.0",
+    "express": "^5.1.0",
+    "genkit": "^1.12.0",
+    "zod": "^3.25.62"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}

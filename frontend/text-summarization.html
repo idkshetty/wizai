@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarization</title>
+    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="text-summarization.css">
+</head>
+<body>
+    <div id="page-container">
+        <header class="app-header">
+            <h1>Text Summarization with Wiz</h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="chat.html">Chat</a>
+                <a href="image-analysis.html">Image Analysis</a>
+            </nav>
+        </header>
+
+        <div id="text-summarization-app-container" class="app-card">
+            <section id="input-section">
+                <h3>Enter Text to Summarize</h3>
+                <div class="input-area">
+                    <textarea id="text-input-area" rows="12" placeholder="Paste your article, research paper, or any long text here..."></textarea>
+                </div>
+                <button id="summarize-text-btn">Summarize Text</button>
+            </section>
+
+            <section id="results-section">
+                <h3>Summary</h3>
+                <div id="loading-indicator" style="display: none; padding: 10px 0;">
+                    <p>Wiz is summarizing the text...</p>
+                    <!-- Simple spinner or text -->
+                </div>
+                <div id="summary-result-container">
+                    <p id="summary-result-placeholder">Your summary will appear here.</p>
+                    <div id="summary-result"></div> <!-- To display the actual summary -->
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div id="toast-container"></div> <!-- For toast notifications -->
+    <script src="text-summarization.js" defer></script>
+</body>
+</html>

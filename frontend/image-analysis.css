@@ -1,0 +1,131 @@
+/* Styles specific to image-analysis.html */
+
+/* App Container specific adjustments (if any, beyond .app-card from common.css) */
+#image-analysis-app-container {
+    /* Inherits card styles from .app-card in common.css */
+    /* Add any specific layout or padding overrides here if needed */
+}
+
+/* Section Styling & Headings */
+#image-analysis-app-container section {
+    margin-bottom: 25px; /* Adjusted margin */
+}
+#image-analysis-app-container section:last-child {
+    margin-bottom: 0;
+}
+
+/* Using h3 in HTML, so styling h3 */
+#image-analysis-app-container h3 {
+    font-size: 1.15rem; /* text-lg equivalent */
+    font-weight: 500;
+    color: #1e293b; /* slate-800 */
+    margin-bottom: 15px;
+    padding-bottom: 8px; /* Adjusted padding */
+    border-bottom: 1px solid #e2e8f0; /* slate-200 */
+}
+
+/* Input Section */
+.input-area {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column; /* Stack label/input and preview */
+    align-items: flex-start;
+}
+
+.file-upload-label {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #f1f5f9; /* slate-100 */
+    color: #0f172a; /* slate-900 */
+    border: 1px solid #cbd5e1; /* slate-300 */
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 0.9rem;
+}
+
+.file-upload-label:hover {
+    background-color: #e2e8f0; /* slate-200 */
+}
+
+#image-preview {
+    /* display: none; is handled by JS */
+    max-width: 100%;
+    max-height: 300px; /* Max height for the preview */
+    margin-top: 15px;
+    border-radius: 4px;
+    border: 1px solid #cbd5e1; /* slate-300 */
+    object-fit: contain;
+}
+
+#analyze-image-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #2563eb; /* blue-600 */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#analyze-image-btn:hover:not(:disabled) {
+    background-color: #1d4ed8; /* blue-700 */
+}
+
+#analyze-image-btn:disabled {
+    background-color: #94a3b8; /* slate-400 */
+    cursor: not-allowed;
+}
+
+/* Results Section */
+#loading-indicator {
+    /* display: none; is handled by JS */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1rem;
+    color: #475569; /* slate-600 */
+}
+#loading-indicator p {
+    /* Future spinner can be added here */
+}
+
+#analysis-result-container {
+    padding: 15px;
+    border: 1px solid #e2e8f0; /* slate-200 */
+    border-radius: 6px;
+    min-height: 80px; /* Give some space for the result */
+    background-color: #f8fafc; /* slate-50 */
+}
+
+#analysis-result-placeholder {
+    color: #64748b; /* slate-500 */
+    font-style: italic;
+    /* display is handled by JS */
+}
+
+#analysis-result {
+    font-size: 0.95rem;
+    white-space: pre-wrap; /* Respect newlines from API response */
+    line-height: 1.5;
+}
+/* Remove extra margins if Markdown is ever used here and parses to <p> */
+#analysis-result p:first-child { margin-top: 0; }
+#analysis-result p:last-child { margin-bottom: 0; }
+
+
+/* Responsive adjustments for image-analysis specific elements */
+@media (max-width: 600px) {
+    #image-analysis-app-container h3 {
+        font-size: 1.1rem; /* Slightly smaller headings on mobile */
+    }
+    .file-upload-label, #analyze-image-btn {
+        width: 100%; /* Make buttons full width */
+        text-align: center;
+    }
+     #image-preview {
+        max-height: 250px; /* Slightly smaller preview on mobile */
+    }
+}

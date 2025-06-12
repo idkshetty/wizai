@@ -1,0 +1,10 @@
+npm WARN exec The following package was not found and will be installed: serve@14.2.4
+ INFO  Accepting connections at http://0.0.0.0:8080
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 GET /index.html
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 Returned 301 in 275 ms
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 GET /chat.html
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 Returned 301 in 2 ms
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 GET /common.css
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 Returned 200 in 18 ms
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 GET /chat.js
+ HTTP  6/12/2025 6:50:52 AM 127.0.0.1 Returned 200 in 7 ms

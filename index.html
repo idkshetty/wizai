@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiz AI Tools - Home</title>
+    <link rel="stylesheet" href="frontend/common.css">
+    <style>
+        #main-content {
+            text-align: center; /* Center text within the card */
+        }
+        .feature-nav-list {
+            list-style: none;
+            padding: 20px 0 0 0; /* Add some padding above the list */
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Space between nav items */
+            max-width: 400px; /* Limit width of the nav list */
+            margin: 0 auto; /* Center the nav list */
+        }
+        .feature-nav-list a {
+            display: block;
+            padding: 15px;
+            background-color: #2563eb; /* blue-600 */
+            color: white;
+            text-decoration: none;
+            border-radius: 6px; /* Consistent with other buttons */
+            font-size: 1.05rem;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+        .feature-nav-list a:hover {
+            background-color: #1d4ed8; /* blue-700 */
+        }
+        #main-content p {
+            font-size: 1.1rem;
+            color: #334155; /* slate-700 */
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="page-container">
+        <header class="app-header">
+            <h1>Wiz AI Tools</h1>
+            <!-- No sub-navigation needed on the home page itself -->
+        </header>
+
+        <main id="main-content" class="app-card">
+            <h2>Welcome!</h2>
+            <p>Explore the capabilities of Wiz AI. Choose a tool below to get started.</p>
+
+            <nav>
+                <ul class="feature-nav-list">
+                    <li><a href="frontend/chat.html">Chat with Wiz</a></li>
+                    <li><a href="frontend/image-analysis.html">Analyze an Image</a></li>
+                    <li><a href="frontend/text-summarization.html">Summarize Text</a></li>
+                </ul>
+            </nav>
+        </main>
+    </div>
+    <!-- No toast container or JS needed for this simple static page -->
+</body>
+</html>

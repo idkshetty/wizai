@@ -1,0 +1,115 @@
+/* Styles specific to text-summarization.html */
+
+/* App Container specific adjustments (if any, beyond .app-card from common.css) */
+#text-summarization-app-container {
+    /* Inherits card styles from .app-card in common.css */
+}
+
+/* Section Styling & Headings */
+#text-summarization-app-container section {
+    margin-bottom: 25px;
+}
+#text-summarization-app-container section:last-child {
+    margin-bottom: 0;
+}
+
+/* Using h3 in HTML, so styling h3 */
+#text-summarization-app-container h3 {
+    font-size: 1.15rem; /* text-lg equivalent */
+    font-weight: 500;
+    color: #1e293b; /* slate-800 */
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e2e8f0; /* slate-200 */
+}
+
+/* Input Section */
+.input-area {
+    margin-bottom: 20px;
+}
+
+#text-input-area {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #cbd5e1; /* slate-300 */
+    border-radius: 6px;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    resize: vertical; /* Allow vertical resize, but not horizontal */
+    min-height: 120px; /* Minimum rows="6" approx */
+    max-height: 300px; /* Maximum height before scrolling */
+}
+
+#text-input-area:focus {
+    outline: none;
+    border-color: #3b82f6; /* blue-500 */
+    box-shadow: 0 0 0 1px #3b82f6;
+}
+
+#summarize-text-btn {
+    display: inline-block;
+    padding: 10px 18px;
+    background-color: #2563eb; /* blue-600 */
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#summarize-text-btn:hover:not(:disabled) {
+    background-color: #1d4ed8; /* blue-700 */
+}
+
+#summarize-text-btn:disabled {
+    background-color: #94a3b8; /* slate-400 */
+    cursor: not-allowed;
+}
+
+/* Results Section */
+#loading-indicator {
+    /* display: none; is handled by JS */
+    padding: 20px 0;
+    text-align: center;
+    font-size: 1rem;
+    color: #475569; /* slate-600 */
+}
+
+#summary-result-container {
+    padding: 15px;
+    border: 1px solid #e2e8f0; /* slate-200 */
+    border-radius: 6px;
+    min-height: 100px; /* Give some space for the summary */
+    background-color: #f8fafc; /* slate-50 */
+}
+
+#summary-result-placeholder {
+    color: #64748b; /* slate-500 */
+    font-style: italic;
+    /* display is handled by JS */
+}
+
+#summary-result {
+    font-size: 0.95rem;
+    white-space: pre-wrap; /* Respect newlines from API response */
+    line-height: 1.6; /* Slightly more line height for readability of summary */
+}
+/* Remove extra margins if Markdown is ever used here and parses to <p> */
+#summary-result p:first-child { margin-top: 0; }
+#summary-result p:last-child { margin-bottom: 0; }
+
+/* Responsive adjustments for text-summarization specific elements */
+@media (max-width: 600px) {
+    #text-summarization-app-container h3 {
+        font-size: 1.1rem; /* Slightly smaller headings on mobile */
+    }
+    #summarize-text-btn {
+        width: 100%; /* Make button full width */
+        text-align: center;
+    }
+    #text-input-area {
+        min-height: 150px; /* More space on mobile for input */
+    }
+}
