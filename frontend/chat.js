@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    const API_BASE_URL = ''; // For deployed backend, set this to your backend's URL (e.g., 'https://your-backend.onrender.com')
+
     // DOM Element References
     const chatHeader = document.getElementById('chat-header');
     const downloadChatBtn = document.getElementById('download-chat-btn');
@@ -205,7 +207,7 @@
             setLoadingState(true);
 
             try {
-                const response = await fetch('/api/chat', {
+                const response = await fetch(`${API_BASE_URL || ''}/api/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

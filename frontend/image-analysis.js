@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    const API_BASE_URL = ''; // For deployed backend, set this to your backend's URL (e.g., 'https://your-backend.onrender.com')
+
     // DOM Element References
     const imageUploadInput = document.getElementById('image-upload-input');
     const imagePreview = document.getElementById('image-preview');
@@ -107,7 +109,7 @@
 
             try {
                 // API endpoint (use relative path or full URL if backend is on different origin)
-                const response = await fetch('/api/analyze-image', {
+                const response = await fetch(`${API_BASE_URL || ''}/api/analyze-image`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

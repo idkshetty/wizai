@@ -1,6 +1,8 @@
 (function() {
     'use strict';
 
+    const API_BASE_URL = ''; // For deployed backend, set this to your backend's URL (e.g., 'https://your-backend.onrender.com')
+
     // DOM Element References
     const textInputArea = document.getElementById('text-input-area');
     const summarizeTextBtn = document.getElementById('summarize-text-btn');
@@ -64,7 +66,7 @@
 
             try {
                 // API endpoint (use relative path or full URL if backend is on different origin)
-                const response = await fetch('/api/summarize-article', {
+                const response = await fetch(`${API_BASE_URL || ''}/api/summarize-article`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

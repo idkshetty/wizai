@@ -90,7 +90,31 @@ The application provides the following features:
 *   **Image Analysis:** `frontend/image-analysis.html` - Upload an image to get an AI-generated description.
 *   **Text Summarization:** `frontend/text-summarization.html` - Paste text to receive a concise summary.
 
-## 4. Project Structure
+## 4. Deployment
+
+To use the AI features with the frontend hosted statically (e.g., on GitHub Pages, Netlify, Vercel, etc.), the `ai-backend` needs to be deployed separately as a Node.js application on a suitable hosting platform (e.g., Render.com, Heroku, Google Cloud Run, Fly.io). GitHub Pages itself cannot run the Node.js backend server.
+
+**Frontend Configuration for Deployed Backend:**
+
+Once your `ai-backend` is deployed and you have a public URL for it (e.g., `https://your-ai-backend-service.com`), you must update the `API_BASE_URL` constant at the top of the following frontend JavaScript files:
+
+*   `frontend/chat.js`
+*   `frontend/image-analysis.js`
+*   `frontend/text-summarization.js`
+
+Change the line:
+```javascript
+const API_BASE_URL = '';
+```
+to your backend's public URL:
+```javascript
+const API_BASE_URL = 'https://your-ai-backend-service.com';
+```
+
+**Local Development Note:**
+If `API_BASE_URL` is left as an empty string (the default), the frontend will attempt to use relative paths for API calls (e.g., `/api/chat`). This is suitable for local development where the frontend (e.g., served from `http://localhost:8080`) and backend (e.g., running on `http://localhost:3001`) are on the same machine, and the backend has CORS enabled to allow these cross-port requests.
+
+## 5. Project Structure
 
 ```
 .
@@ -104,7 +128,6 @@ The application provides the following features:
 │   ├── tsconfig.json
 │   └── ...
 ├── frontend/
-│   ├── common.css          # Shared styles for all frontend pages
 │   ├── common.css          # Shared styles for all frontend pages
 │   ├── chat.html           # Chat interface HTML
 │   ├── chat.css            # Styles specific to chat.html
