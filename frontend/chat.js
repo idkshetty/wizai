@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    const API_BASE_URL = ''; // For deployed backend, set this to your backend's URL (e.g., 'https://your-backend.onrender.com')
+    const API_BASE_URL = 'http://localhost:3001'; // For local dev; ensure ai-backend runs on 3001. For deployment, change this to your live backend URL.
 
     // DOM Element References
     const chatHeader = document.getElementById('chat-header');
@@ -15,6 +15,7 @@
 
     // Store initial SVG content for send button
     const sendButtonInitialHTML = sendMessageBtn ? sendMessageBtn.innerHTML : '';
+    const aiAvatarSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>`;
 
     // State Management
     let messages = [];
@@ -148,6 +149,45 @@
         if (messageTextarea) {
             messageTextarea.disabled = loading;
         }
+
+        // Typing indicator logic
+        const existingIndicator = document.getElementById('typing-indicator-message');
+        if (loading) {
+            if (!existingIndicator && messageDisplayArea) {
+                const indicatorElement = createTypingIndicatorElement();
+                messageDisplayArea.appendChild(indicatorElement);
+                messageDisplayArea.scrollTop = messageDisplayArea.scrollHeight;
+            }
+        } else {
+            if (existingIndicator) {
+                existingIndicator.remove();
+            }
+        }
+    }
+
+    function createTypingIndicatorElement() {
+        const messageContainer = document.createElement('div');
+        messageContainer.classList.add('message-container', 'ai-message-container');
+        messageContainer.id = 'typing-indicator-message';
+
+        const avatar = document.createElement('div');
+        avatar.classList.add('avatar', 'ai-avatar');
+        avatar.innerHTML = aiAvatarSVG; // Use the stored AI avatar SVG
+
+        const messageBubble = document.createElement('div');
+        messageBubble.classList.add('message-bubble', 'typing-indicator-bubble');
+
+        const typingIndicator = document.createElement('div');
+        typingIndicator.classList.add('typing-indicator');
+        for (let i = 0; i < 3; i++) {
+            const dot = document.createElement('span');
+            typingIndicator.appendChild(dot);
+        }
+        messageBubble.appendChild(typingIndicator);
+
+        messageContainer.appendChild(avatar);
+        messageContainer.appendChild(messageBubble);
+        return messageContainer;
     }
 
     if (messageForm) {

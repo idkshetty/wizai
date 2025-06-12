@@ -112,25 +112,29 @@ The application provides the following features:
 
 To use the AI features with the frontend hosted statically (e.g., on GitHub Pages, Netlify, Vercel, etc.), the `ai-backend` needs to be deployed separately as a Node.js application on a suitable hosting platform (e.g., Render.com, Heroku, Google Cloud Run, Fly.io). GitHub Pages itself cannot run the Node.js backend server.
 
-**Frontend Configuration for Deployed Backend:**
+**Frontend Configuration:**
 
-Once your `ai-backend` is deployed and you have a public URL for it (e.g., `https://your-ai-backend-service.com`), you must update the `API_BASE_URL` constant at the top of the following frontend JavaScript files:
+The frontend JavaScript files (`frontend/chat.js`, `frontend/image-analysis.js`, `frontend/text-summarization.js`) include a constant `API_BASE_URL` at the top.
+
+*   **For Local Development:**
+    This constant is pre-configured to `const API_BASE_URL = 'http://localhost:3001';`. This default is intended for local development, assuming your `ai-backend` server is running on port 3001 and your frontend is served from a different local port (e.g., via `npx serve .`). The CORS configuration on the backend allows this cross-port communication. No changes are needed to this constant for standard local development.
+
+*   **For Production/Deployment:**
+    When deploying the frontend (e.g., to a static hosting service like GitHub Pages, Netlify, Vercel) and the `ai-backend` to a live hosting platform, you **must** update the `API_BASE_URL` in these JavaScript files.
+    Change it from the local development default to your backend's public URL. For example:
 
 *   `frontend/chat.js`
 *   `frontend/image-analysis.js`
 *   `frontend/text-summarization.js`
 
-Change the line:
 ```javascript
-const API_BASE_URL = '';
-```
-to your backend's public URL:
-```javascript
+// Before:
+// const API_BASE_URL = 'http://localhost:3001';
+
+// After (example for deployment):
 const API_BASE_URL = 'https://your-ai-backend-service.com';
 ```
-
-**Local Development Note:**
-If `API_BASE_URL` is left as an empty string (the default), the frontend will attempt to use relative paths for API calls (e.g., `/api/chat`). This is suitable for local development where the frontend (e.g., served from `http://localhost:8080`) and backend (e.g., running on `http://localhost:3001`) are on the same machine, and the backend has CORS enabled to allow these cross-port requests.
+Ensure this change is made in all three relevant JavaScript files before you build/deploy your frontend assets.
 
 ## 5. Project Structure
 

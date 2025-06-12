@@ -351,3 +351,56 @@
         height: 18px;
     }
 }
+
+/* Typing Indicator Styles */
+/* Assuming the indicator is placed inside a .message-bubble.ai-message-container */
+.ai-message-container .message-bubble.typing-indicator-bubble {
+    /* background-color: #e2e8f0; /* Consistent with AI message bubble */
+    /* color: #0f172a; */
+    padding: 10px 14px; /* Match .message-text padding */
+    display: inline-flex; /* Use inline-flex if the bubble should only wrap the indicator */
+    align-items: center;
+    /* Remove explicit height if dots define it, or set a min-height */
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  /* justify-content: center; /* If dots should be centered in a wider bubble */
+  /* height: 17px; /* Example height, adjust based on dot size and padding */
+}
+
+.typing-indicator span { /* Individual dot */
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #64748b; /* slate-500, a neutral dot color */
+  border-radius: 50%;
+  margin: 0 2.5px; /* Spacing between dots */
+  animation-name: typing-dot-animation;
+  animation-duration: 1.4s; /* Slightly longer duration */
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* Stagger the animation for each dot */
+.typing-indicator span:nth-child(1) {
+  animation-delay: 0s;
+}
+.typing-indicator span:nth-child(2) {
+  animation-delay: 0.25s; /* Adjusted delay */
+}
+.typing-indicator span:nth-child(3) {
+  animation-delay: 0.5s;  /* Adjusted delay */
+}
+
+@keyframes typing-dot-animation {
+  0%, 70%, 100% { /* Hold longer at base */
+    transform: scale(0.6); /* Start smaller */
+    opacity: 0.4;
+  }
+  35% { /* Peak of animation */
+    transform: scale(1);
+    opacity: 1;
+  }
+}

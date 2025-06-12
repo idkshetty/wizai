@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    const API_BASE_URL = ''; // For deployed backend, set this to your backend's URL (e.g., 'https://your-backend.onrender.com')
+    const API_BASE_URL = 'http://localhost:3001'; // For local dev; ensure ai-backend runs on 3001. For deployment, change this to your live backend URL.
 
     // DOM Element References
     const imageUploadInput = document.getElementById('image-upload-input');
