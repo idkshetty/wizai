@@ -40,7 +40,25 @@ The backend server handles all AI-related processing using Genkit.
         # Example (replace with your actual key):
         export GOOGLE_API_KEY="YOUR_API_KEY_HERE"
         ```
-    *   Refer to the [Genkit Google AI Plugin Documentation](https://genkit.dev/docs/plugins/google-genai) for more details on API key setup. Without a valid API key, AI-related API endpoints will return an error.
+    *   Refer to the [Genkit Google AI Plugin Documentation](https://genkit.dev/docs/plugins/google-genai) for more details on API key setup.
+
+    *   **Alternative for Local Development: `config.local.json`**
+        For local development convenience, you can create a file named `config.local.json` inside the `ai-backend/src/` directory. The backend server will attempt to read the `GOOGLE_API_KEY` from this file if it exists.
+
+        Create `ai-backend/src/config.local.json` with the following structure:
+        ```json
+        {
+          "GOOGLE_API_KEY": "YOUR_ACTUAL_API_KEY_HERE"
+        }
+        ```
+        If this file is present and contains a valid key, that key will be used. Otherwise, the server will fall back to checking for the environment variables mentioned above.
+
+        > **WARNING:** This method is intended for **local development convenience ONLY**.
+        > The `ai-backend/src/config.local.json` file **MUST NOT be committed to version control or shared.**
+        > It is already listed in `ai-backend/.gitignore` to help prevent accidental commits.
+        > Using environment variables is the standard and more secure method for managing API keys, especially for production or any shared environment.
+
+    *   Without a valid API key (either from `config.local.json` or environment variables), AI-related API endpoints will return an error.
 
 5.  **Run the server:**
     Once built and configured, start the server using:
