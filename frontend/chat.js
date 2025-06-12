@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    const API_BASE_URL = 'https://wizai-backend-3tpo.onrender.com'; // For local dev; ensure ai-backend runs on 3001. For deployment, change this to your live backend URL.
+    const API_BASE_URL = 'http://localhost:3001'; // For local dev; ensure ai-backend runs on 3001. For deployment, change this to your live backend URL.
 
     // DOM Element References
     const chatHeader = document.getElementById('chat-header');

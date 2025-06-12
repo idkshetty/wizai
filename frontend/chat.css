@@ -167,6 +167,8 @@
     overflow-x: auto;
     margin: 8px 0;
     font-size: 0.85em;
+    white-space: pre-wrap;  /* Preserve newlines and wrap long lines */
+    word-wrap: break-word;   /* Break long words if they overflow */
 }
 
 .ai-message-container .message-bubble .message-text code:not(pre code) {
