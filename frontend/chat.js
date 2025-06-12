@@ -98,9 +98,28 @@
         const messageText = document.createElement('p');
         messageText.classList.add('message-text');
 
-        if (message.role === 'assistant' && typeof marked === 'function') {
-            messageText.innerHTML = marked.parse(message.content);
-        } else {
+        if (message.role === 'assistant') {
+            if (typeof showdown !== 'undefined' && showdown && typeof showdown.Converter === 'function') {
+                const converter = new showdown.Converter({
+                    tables: true,
+                    strikethrough: true,
+                    tasklists: true,
+                    simpleLineBreaks: true, // Converts single newlines to <br>
+                    ghCodeBlocks: true,     // Enables GitHub Flavored Markdown code blocks
+                    openLinksInNewWindow: true // Makes links open in a new tab
+                });
+                messageText.innerHTML = converter.makeHtml(message.content);
+            } else {
+                console.warn('Showdown.js library not available or not correctly loaded. Rendering AI message as plain text.');
+                // Fallback to plain text with basic newline handling
+                message.content.split('\n').forEach((line, index, arr) => {
+                    messageText.appendChild(document.createTextNode(line));
+                    if (index < arr.length - 1) {
+                        messageText.appendChild(document.createElement('br'));
+                    }
+                });
+            }
+        } else { // For user messages, just handle newlines
             message.content.split('\n').forEach((line, index, arr) => {
                 messageText.appendChild(document.createTextNode(line));
                 if (index < arr.length - 1) {
