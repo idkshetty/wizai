@@ -1,10 +1,14 @@
 import express from 'express';
+import cors from 'cors';
 import { startConversation, StartConversationInput, StartConversationOutput } from './flows/start-conversation';
 import { analyzeImage, AnalyzeImageInput, AnalyzeImageOutput } from './flows/analyze-image';
 import { summarizeArticle, SummarizeArticleInput, SummarizeArticleOutput } from './flows/summarize-article';
 
 const app = express();
 const port = 3001;
+
+// Enable CORS for all routes and origins
+app.use(cors());
 
 // Middleware to parse JSON bodies
 // Increase payload limit for data URIs in analyze-image

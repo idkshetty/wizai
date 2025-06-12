@@ -48,6 +48,7 @@ The backend server handles all AI-related processing using Genkit.
     npm run serve
     ```
     This will start the backend server, typically on `http://localhost:3001`. The console will confirm the listening port.
+    *   CORS (Cross-Origin Resource Sharing) is enabled on this server by default (all origins) to facilitate local development when the frontend is served from a different port (e.g., 8080).
 
 ## 3. Frontend Usage
 
